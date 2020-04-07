@@ -1,4 +1,5 @@
 const redux = require('redux');
+const createStore = require('redux');
 
 function increment() {
   return {
@@ -12,21 +13,27 @@ function decrement() {
   };
 }
 
-function reducer(state = { count: 0 }, action) {
+const reducer = (state = { count: 0 }, action) => {
   // return new state based on the incoming action.type
-  if (action.type === 'INCREMENT') {
-    return {
-      count: state.count + 1,
-    };
-  } else if (action.type === 'DECREMENT') {
-    return {
-      count: state.count - 1,
-    };
+
+  switch (action.type) {
+    case 'INCREMENT':
+      return {
+        count: state.count + 1,
+      };
+    case 'DECREMENT':
+      return {
+        count: state.count - 1,
+      };
+    default:
+      return state;
   }
-}
+};
 
-const store = redux.createStore()
 
+
+const store = createStore(reducer);
+
+store.
 
 console.log(increment());
-

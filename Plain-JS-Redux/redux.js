@@ -1,50 +1,37 @@
 const redux = require('redux');
 
-function increment(amount) {
+const initialState = {
+  count: 0,
+  favouriteThing: [],
+};
+
+function change_count(amount) {
   return {
-    type: 'INCREMENT',
+    type: 'CHANGE_COUNT',
     payload: amount,
   };
 }
 
-function decrement() {
+function addFavoriteThing(thing) {
   return {
-    type: 'DECREMENT',
+    type: 'ADD_FAVORITE_THING',
+    payload: thing,
   };
 }
 
-function double() {
-  return {
-    type: 'DOUBLE',
-  };
-}
-
-function halve() {
-  return {
-    type: 'HALVE',
-  };
-}
-
-function reducer(state = { count: 0 }, action) {
-  // return new state based on the incoming action.type
-
+function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'INCREMENT':
+    case 'CHANGE_COUNT':
       return {
+        ...state,
         count: state.count + action.payload,
       };
-    case 'DECREMENT':
+    case 'ADD_FAVORITE_THING':
       return {
-        count: state.count - 1,
+        ...state,
+        favouriteThing: [...state.favouriteThing, action.payload],
       };
-    case 'DOUBLE':
-      return {
-        count: state.count * 2,
-      };
-    case 'HALVE':
-      return {
-        count: Math.round(state.count / 2),
-      };
+
     default:
       return state;
   }
@@ -56,8 +43,6 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(increment(5));
-store.dispatch(double());
-store.dispatch(double());
-store.dispatch(double());
-store.dispatch(halve());
+store.dispatch(change_count(-4));
+store.dispatch(addFavoriteThing('this'));
+store.dispatch(addFavoriteThing('is'));

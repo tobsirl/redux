@@ -1,5 +1,4 @@
 const redux = require('redux');
-const createStore = require('redux');
 
 function increment() {
   return {
@@ -50,6 +49,12 @@ function reducer(state = { count: 0 }, action) {
   }
 }
 
-const store = createStore(reducer);
+const store = redux.createStore(reducer);
 
-store.console.log(increment());
+store.subscribe(() => {
+  console.log(store.getState());
+});
+
+console.log(store);
+
+console.log(increment());

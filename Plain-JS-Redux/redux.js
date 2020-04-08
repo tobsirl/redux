@@ -19,6 +19,13 @@ function addFavoriteThing(thing) {
   };
 }
 
+function removeFavoriteThing(thing) {
+  return {
+    type: 'REMOVE_FAVORITE_THING',
+    payload: thing,
+  };
+}
+
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'CHANGE_COUNT':
@@ -31,7 +38,14 @@ function reducer(state = initialState, action) {
         ...state,
         favouriteThing: [...state.favouriteThing, action.payload],
       };
-
+    case 'REMOVE_FAVORITE_THING':
+      const updatedArray = state.favouriteThing.filter(
+        (thing) => action.payload !== thing
+      );
+      return {
+        ...state,
+        favouriteThing: updatedArray,
+      };
     default:
       return state;
   }
@@ -44,5 +58,6 @@ store.subscribe(() => {
 });
 
 store.dispatch(change_count(-4));
-store.dispatch(addFavoriteThing('this'));
+store.dispatch(addFavoriteThing('This'));
 store.dispatch(addFavoriteThing('is'));
+store.dispatch(removeFavoriteThing('This'));

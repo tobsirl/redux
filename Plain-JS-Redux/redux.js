@@ -1,8 +1,9 @@
 const redux = require('redux');
 
-function increment() {
+function increment(amount) {
   return {
     type: 'INCREMENT',
+    payload: amount,
   };
 }
 
@@ -30,7 +31,7 @@ function reducer(state = { count: 0 }, action) {
   switch (action.type) {
     case 'INCREMENT':
       return {
-        count: state.count + 1,
+        count: state.count + action.payload,
       };
     case 'DECREMENT':
       return {
@@ -55,7 +56,7 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(increment());
+store.dispatch(increment(5));
 store.dispatch(double());
 store.dispatch(double());
 store.dispatch(double());

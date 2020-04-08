@@ -55,6 +55,8 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-console.log(store);
-
-console.log(increment());
+store.dispatch(increment());
+store.dispatch(double());
+store.dispatch(double());
+store.dispatch(double());
+store.dispatch(halve());

@@ -53,6 +53,12 @@ function upVote() {
   };
 }
 
+function downVote() {
+  return {
+    type: 'DOWN_VOTE',
+  };
+}
+
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'CHANGE_COUNT':
@@ -94,9 +100,20 @@ function reducer(state = initialState, action) {
         ...state,
         youtubeVideo: {
           ...state.youtubeVideo,
-          vote: {
+          votes: {
             ...state.youtubeVideo.votes,
             up: state.youtubeVideo.votes.up + 1,
+          },
+        },
+      };
+    case 'DOWN_VOTE':
+      return {
+        ...state,
+        youtubeVideo: {
+          ...state.youtubeVideo,
+          votes: {
+            ...state.youtubeVideo.votes,
+            down: state.youtubeVideo.votes.down + 1,
           },
         },
       };
@@ -113,4 +130,5 @@ store.subscribe(() => {
 
 store.dispatch(setYoutubeTitle('Boris'));
 store.dispatch(incrementVoteCount());
-store.dispatch(upVote())
+store.dispatch(upVote());
+store.dispatch(downVote());

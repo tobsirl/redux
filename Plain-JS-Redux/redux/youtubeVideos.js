@@ -7,32 +7,32 @@ const initialState = {
   },
 };
 
-function setYoutubeTitle(title) {
+export function setYoutubeTitle(title) {
   return {
     type: 'SET_YOUTUBE_TITLE',
     payload: title,
   };
 }
 
-function incrementVoteCount() {
+export function incrementVoteCount() {
   return {
     type: 'INCREMENT_VOTE_COUNT',
   };
 }
 
-function upVote() {
+export function upVote() {
   return {
     type: 'UP_VOTE',
   };
 }
 
-function downVote() {
+export function downVote() {
   return {
     type: 'DOWN_VOTE',
   };
 }
 
-function youtubeVideoReducer(youtubeVideo = initialState, action) {
+export default function youtubeVideoReducer(youtubeVideo = initialState, action) {
   switch (action.type) {
     case 'SET_YOUTUBE_TITLE':
       return {

@@ -3,6 +3,14 @@ const redux = require('redux');
 const initialState = {
   count: 0,
   favouriteThing: [],
+  youtubeVideo: {
+    title: '',
+    votecount: 0,
+    votes: {
+      up: 0,
+      down: 0,
+    },
+  },
 };
 
 function change_count(amount) {
@@ -26,6 +34,25 @@ function removeFavoriteThing(thing) {
   };
 }
 
+function setYoutubeTitle(title) {
+  return {
+    type: 'SET_YOUTUBE_TITLE',
+    payload: title,
+  };
+}
+
+function incrementVoteCount() {
+  return {
+    type: 'INCREMENT_VOTE_COUNT',
+  };
+}
+
+function upVote() {
+  return {
+    type: 'UP_VOTE',
+  };
+}
+
 function reducer(state = initialState, action) {
   switch (action.type) {
     case 'CHANGE_COUNT':
@@ -46,6 +73,33 @@ function reducer(state = initialState, action) {
         ...state,
         favouriteThing: updatedArray,
       };
+    case 'SET_YOUTUBE_TITLE':
+      return {
+        ...state,
+        youtubeVideo: {
+          ...state.youtubeVideo,
+          title: action.payload,
+        },
+      };
+    case 'INCREMENT_VOTE_COUNT':
+      return {
+        ...state,
+        youtubeVideo: {
+          ...state.youtubeVideo,
+          votecount: state.youtubeVideo.votecount + 1,
+        },
+      };
+    case 'UP_VOTE':
+      return {
+        ...state,
+        youtubeVideo: {
+          ...state.youtubeVideo,
+          vote: {
+            ...state.youtubeVideo.votes,
+            up: state.youtubeVideo.votes.up + 1,
+          },
+        },
+      };
     default:
       return state;
   }
@@ -57,7 +111,6 @@ store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(change_count(-4));
-store.dispatch(addFavoriteThing('This'));
-store.dispatch(addFavoriteThing('is'));
-store.dispatch(removeFavoriteThing('This'));
+store.dispatch(setYoutubeTitle('Boris'));
+store.dispatch(incrementVoteCount());
+store.dispatch(upVote())

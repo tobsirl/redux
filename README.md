@@ -22,6 +22,22 @@
 2. Restaurant server ➡️ "dispatch"
 3. Chef ➡️ "reducer"
   
+## Connect
+### How does connect work?
+* Higher-order component
+* Pass 2 things
+  1. "What parts of the global state does this component want access to?"
+  2. "What actions do you want to be able to dispatch from this component?"
+* It then returns a function to which you pass the component you want to connect.
+* When called, this function creates a new component wrapping yours which passes the global state and "dispatchable" actions to your component via props.
+![connect](https://user-images.githubusercontent.com/25591390/78986925-5ac32900-7b24-11ea-8381-81485a7dbed4.png)
+
+```js
+connect("What parts of state do you want?", "What actions do you want to dispatch") (Component)
+
+connect(mapStateToPropsFunc, mapDispatchToPropsFunc) (Component)
+```
+
 # Another option - [React Context API](https://reactjs.org/docs/context.html) 
 * Built in state management API.
 * Context provides a way to pass data through the component tree without having to pass props down manually at every level.

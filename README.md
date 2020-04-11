@@ -74,6 +74,12 @@ const result: any = useSelector(selector: Function, equalityFn?: Function)
 ```
 The selector is approximately equivalent to the mapStateToProps argument to connect conceptually. The selector will be called with the entire Redux store state as its only argument. 
 
+#### useDispatch()
+```js
+const dispatch = useDispatch()
+```
+This hook returns a reference to the dispatch function from the Redux store. You may use it to dispatch actions as needed.
+
 # Another option - [React Context API](https://reactjs.org/docs/context.html) 
 * Built in state management API.
 * Context provides a way to pass data through the component tree without having to pass props down manually at every level.

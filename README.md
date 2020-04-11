@@ -54,6 +54,19 @@ As the first argument passed in to **connect**, **mapStateToProps** is used for 
 * It is called every time the store state changes.
 * It receives the entire store state, and should return an object of data this component needs.
 
+#### mapDispatchToProps
+```js
+const mapDispatchToProps = dispatch => {
+  return {
+    // dispatching plain actions
+    increment: () => dispatch({ type: 'INCREMENT' }),
+    decrement: () => dispatch({ type: 'DECREMENT' }),
+    reset: () => dispatch({ type: 'RESET' })
+  }
+}
+```
+As the second argument passed in to connect, mapDispatchToProps is used for dispatching actions to the store.
+
 # Another option - [React Context API](https://reactjs.org/docs/context.html) 
 * Built in state management API.
 * Context provides a way to pass data through the component tree without having to pass props down manually at every level.

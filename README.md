@@ -67,6 +67,13 @@ const mapDispatchToProps = dispatch => {
 ```
 As the second argument passed in to connect, mapDispatchToProps is used for dispatching actions to the store.
 
+## [Redux Hooks](https://react-redux.js.org/api/hooks)
+#### useSelector()
+```js
+const result: any = useSelector(selector: Function, equalityFn?: Function)
+```
+The selector is approximately equivalent to the mapStateToProps argument to connect conceptually. The selector will be called with the entire Redux store state as its only argument. 
+
 # Another option - [React Context API](https://reactjs.org/docs/context.html) 
 * Built in state management API.
 * Context provides a way to pass data through the component tree without having to pass props down manually at every level.

@@ -30,6 +30,7 @@
   2. "What actions do you want to be able to dispatch from this component?"
 * It then returns a function to which you pass the component you want to connect.
 * When called, this function creates a new component wrapping yours which passes the global state and "dispatchable" actions to your component via props.
+  
 ![connect](https://user-images.githubusercontent.com/25591390/78986925-5ac32900-7b24-11ea-8381-81485a7dbed4.png)
 
 ```js
@@ -37,6 +38,21 @@ connect("What parts of state do you want?", "What actions do you want to dispatc
 
 connect(mapStateToPropsFunc, mapDispatchToPropsFunc) (Component)
 ```
+
+#### mapStateToProps
+```js
+// TodoList.js
+
+function mapStateToProps(state) {
+  const { todos } = state
+  return { todoList: todos.allIds }
+}
+
+export default connect(mapStateToProps)(TodoList)
+```
+As the first argument passed in to **connect**, **mapStateToProps** is used for selecting the part of the data from the store that the connected component needs. It’s frequently referred to as just **mapState** for short.
+* It is called every time the store state changes.
+* It receives the entire store state, and should return an object of data this component needs.
 
 # Another option - [React Context API](https://reactjs.org/docs/context.html) 
 * Built in state management API.

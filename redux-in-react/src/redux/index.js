@@ -1,13 +1,13 @@
 import { createStore } from 'redux';
 
 // actions
-function increment() {
+export function increment() {
   return {
     type: 'INCREMENT',
   };
 }
 
-function decrement() {
+export function decrement() {
   return {
     type: 'DECREMENT',
   };

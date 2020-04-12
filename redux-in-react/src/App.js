@@ -1,33 +1,22 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { increment, decrement } from './redux';
 import './App.css';
 
-function App(props) {
+function App() {
+  const count = useSelector((state) => state);
+  
   return (
     <div className="App">
-      <h1>{props.count}</h1>
-      <button className="btn" onClick={props.increment}>
+      <h1>{count}</h1>
+      <button className="btn" onClick={increment}>
         +
       </button>
-      <button className="btn" onClick={props.decrement}>
+      <button className="btn" onClick={decrement}>
         -
       </button>
     </div>
   );
 }
 
-function mapStateToProps(state) {
-  // return an object where the keys are the name of the prop your component wants
-  // values are the actual parts of the global state your component wants
-  return {
-    count: state,
-  };
-}
-
-const mapDispatchToProps = {
-  increment,
-  decrement,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

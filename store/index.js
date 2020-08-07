@@ -1,35 +1,50 @@
 // Actions
-{
+return {
   type: 'ADD_TODO',
   todo: {
     id: 0,
     name: 'Learn Redux',
-    complete: false
-  }
-}
+    complete: false,
+  },
+};
 
-{
+return {
   type: 'REMOVE_TODO',
-  id: 0
-}
+  id: 0,
+};
 
-{
+return {
   type: 'TOGGLE_TODO',
-  id: 0
-}
+  id: 0,
+};
 
-{
+return {
   type: 'ADD_GOAL',
   goal: {
     id: 0,
-    name: 'Run a Marathon'
+    name: 'Run a Marathon',
+  },
+};
+
+return {
+  type: 'REMOVE_GOAL',
+  id: 0,
+};
+
+function todos(state = [], action) {
+  if (action.type === 'ADD_TODO') {
+    return state.concat([action.todo]);
   }
+
+  return state;
 }
 
-{
-  type: 'REMOVE_GOAL',
-  id: 0
-}
+/*
+  Characteristics of a Pure Function
+  1) They always return the same result if the same agruments are passed in.
+  2) They depend only on the arguments passed into them.
+  3) Never produce any side effects. 
+*/
 
 function createStore() {
   // The store should have four parts

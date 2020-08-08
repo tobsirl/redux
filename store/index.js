@@ -48,6 +48,17 @@ function todos(state = [], action) {
   }
 }
 
+function goals(state = [], action) {
+  switch (action.type) {
+    case 'ADD_GOAL':
+      return state.concat([action.goal]);
+    case 'REMOVE_GOAL':
+      return state.filter((goal) => goal.id !== action.id);
+    default:
+      return state;
+  }
+}
+
 /*
   Characteristics of a Pure Function
   1) They always return the same result if the same agruments are passed in.

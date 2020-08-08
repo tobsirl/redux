@@ -46,7 +46,7 @@ function todos(state = [], action) {
   3) Never produce any side effects. 
 */
 
-function createStore() {
+function createStore(reducer) {
   // The store should have four parts
   // 1. The state
   // 2. Get the state
@@ -66,12 +66,35 @@ function createStore() {
     };
   };
 
+  const dispatch = (action) => {
+    // call todos
+    state = reducer(state, action);
+    // loop over listeners and invoke them
+    listeners.forEach((listener) => listener());
+  };
+
   return {
     getState,
     subscribe,
+    dispatch,
   };
 }
 
 const store = createStore();
 
-store.subscribe(() => {});
+store.getState();
+
+const unsubsribe = store.subscribe(() => {
+  console.log(`The new state is: `, store.getState());
+});
+
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 0,
+    name: 'Learn Redux',
+    complete: false,
+  },
+});
+
+store.getState();

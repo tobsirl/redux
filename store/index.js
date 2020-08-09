@@ -1,36 +1,3 @@
-// Actions
-return {
-  type: 'ADD_TODO',
-  todo: {
-    id: 0,
-    name: 'Learn Redux',
-    complete: false,
-  },
-};
-
-return {
-  type: 'REMOVE_TODO',
-  id: 0,
-};
-
-return {
-  type: 'TOGGLE_TODO',
-  id: 0,
-};
-
-return {
-  type: 'ADD_GOAL',
-  goal: {
-    id: 0,
-    name: 'Run a Marathon',
-  },
-};
-
-return {
-  type: 'REMOVE_GOAL',
-  id: 0,
-};
-
 function todos(state = [], action) {
   switch (action.type) {
     case 'ADD_TODO':
@@ -59,6 +26,13 @@ function goals(state = [], action) {
   }
 }
 
+function app(state = {}, action) {
+  return {
+    todos: todos(state.todos, action),
+    goals: goals(state.goals, action),
+  };
+}
+
 /*
   Characteristics of a Pure Function
   1) They always return the same result if the same agruments are passed in.
@@ -66,7 +40,7 @@ function goals(state = [], action) {
   3) Never produce any side effects. 
 */
 
-function createStore(reducer) {
+function createStore(app) {
   // The store should have four parts
   // 1. The state
   // 2. Get the state

@@ -137,3 +137,48 @@ store.dispatch({
 });
 
 store.getState();
+
+function generateId() {
+  return (
+    Math.random().toString(36).substring(2) + new Date().getTime().toString(36)
+  );
+}
+
+// DOM code
+function addTodo() {
+  const input = document.getElementById('todo');
+  const todoList = document.getElementById('todos');
+  const name = input.value;
+  input.value = '';
+
+  todoList.innerText = name;
+
+  store.dispatch(
+    addTodoAction({
+      id: generateId(),
+      name,
+      complete: false,
+    })
+  );
+}
+
+function addGoal() {
+  const input = document.getElementById('goal');
+  const name = input.value;
+  input.value = '';
+
+  store.dispatch(
+    addGoalAction({
+      id: generateId(),
+      name,
+    })
+  );
+}
+
+const todoBtn = document.getElementById('todoBtn');
+
+todoBtn.addEventListener('click', addTodo);
+
+const goalBtn = document.getElementById('goalBtn');
+
+goalBtn.addEventListener('click', addGoal);

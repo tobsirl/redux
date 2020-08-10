@@ -6,7 +6,7 @@
 */
 
 // Library code
-function createStore(app) {
+function createStore(reducer) {
   // The store should have four parts
   // 1. The state
   // 2. Get the state
@@ -119,7 +119,7 @@ function app(state = {}, action) {
   };
 }
 
-const store = createStore();
+const store = createStore(app);
 
 store.getState();
 

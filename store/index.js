@@ -1,3 +1,5 @@
+import Redux from 'redux';
+const redux = require('redux');
 /*
   Characteristics of a Pure Function
   1) They always return the same result if the same agruments are passed in.
@@ -6,39 +8,39 @@
 */
 
 // Library code
-function createStore(reducer) {
-  // The store should have four parts
-  // 1. The state
-  // 2. Get the state
-  // 3. Listen to changes on the state
-  // 4. Update the state
+// function createStore(reducer) {
+//   // The store should have four parts
+//   // 1. The state
+//   // 2. Get the state
+//   // 3. Listen to changes on the state
+//   // 4. Update the state
 
-  let state;
-  let listeners = [];
+//   let state;
+//   let listeners = [];
 
-  const getState = () => state;
+//   const getState = () => state;
 
-  const subscribe = (listener) => {
-    listeners.push(listener);
+//   const subscribe = (listener) => {
+//     listeners.push(listener);
 
-    return () => {
-      listeners = listeners.filter((l) => l !== listener);
-    };
-  };
+//     return () => {
+//       listeners = listeners.filter((l) => l !== listener);
+//     };
+//   };
 
-  const dispatch = (action) => {
-    // call todos
-    state = reducer(state, action);
-    // loop over listeners and invoke them
-    listeners.forEach((listener) => listener());
-  };
+//   const dispatch = (action) => {
+//     // call todos
+//     state = reducer(state, action);
+//     // loop over listeners and invoke them
+//     listeners.forEach((listener) => listener());
+//   };
 
-  return {
-    getState,
-    subscribe,
-    dispatch,
-  };
-}
+//   return {
+//     getState,
+//     subscribe,
+//     dispatch,
+//   };
+// }
 
 // App Code
 const ADD_TODO = 'ADD_TODO';
@@ -119,7 +121,7 @@ function app(state = {}, action) {
   };
 }
 
-const store = createStore(app);
+const store = Redux.createStore(app);
 
 store.subscribe(() => {
   const { goals, todos } = store.getState();

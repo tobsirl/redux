@@ -10,6 +10,14 @@ body {
   font-family: 'Anton', sans-serif
 }
 
+.vanilla {
+  height: 50vh;
+}
+
+.react {
+  height: 50vh;
+}
+
 .container {
   display: flex;
   justify-content: center;

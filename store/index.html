@@ -17,14 +17,14 @@
     <div>
       <h1>Todo List</h1>
       <input type="text" id="todo" placeholder="Add Todo" />
-      <button id="todoBtn">Add Todo</button>
+      <button class="btn" id="todoBtn">Add Todo</button>
       <ul id="todos"></ul>
     </div>
 
     <div>
       <h1>Goals</h1>
       <input type="text" id="goal" placeholder="Add Goal" />
-      <button id="goalBtn">Add Goal</button>
+      <button class="btn" id="goalBtn">Add Goal</button>
       <ul id="goals"></ul>
     </div>
   </div>
@@ -276,7 +276,7 @@
               placeholder="Add Todo"
               ref={(input) => this.input = input}
             />
-            <button onClick={this.addItem}>Add Todo</button>
+            <button className="btn" onClick={this.addItem}>Add Todo</button>
             <List />
             </div>
         )
@@ -284,10 +284,27 @@
     }
 
     class Goals extends React.Component {
+      addItem = (e) => {
+        e.preventDefault()
+        const name = this.input.value;
+        this.input.value = ''
+
+        this.props.store.dispatch(addGoalAction({
+          id: generateId(),
+          name
+        }))
+      }
+
       render() {
         return (
           <div>
-            Goals
+            <h1>Goal List</h1>
+            <input 
+              type="text"
+              placeholder="Add Goal"
+              ref={(input) => this.input = input}
+            />
+            <button className="btn" onClick={this.addItem}>Add Goal</button>
             <List />
             </div>
         )
@@ -299,7 +316,7 @@
         return (
           <div className="container react">
             <Todos store={this.props.store}/>
-            <Goals />
+            <Goals store={this.props.store}/>
             </div>
         )
       }

@@ -24,6 +24,21 @@ body {
   gap: 3em;
 }
 
+input[type=text] {
+  padding: .5em;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn {
+  width: 100%;
+  padding: .5em;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Anton', sans-serif;
+  border: none;
+}
+
 li {
   list-style: none;
 }
